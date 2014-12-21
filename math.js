@@ -49,11 +49,35 @@ var Vector3 = function (_mx, _my, _mz) {
         this.z = (tempY * Math.sin(a) + this.z * Math.cos(a));
     };
     
+    function getNormal(){
+        return new Vector3(this.x/this.getMagnitude,this.y/this.getMagnitude,this.z/this.getMagnitude);
+    };
+    
+    function vecNorm(a){
+        var d = vecDist( a, [0,0,0]);//Math.max(a[0],a[1],a[2]);
+        return [ (a[0])/d,(a[1])/d,(a[2])/d ];
+    };
+    
     this.getMagnitude = function () {  // Vector3.getMagnitude()
         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2));
     };
     
     this.toScreen = function (a) {
         return new Vector2();   
-    }
+    };
 };
+
+var BoundingBox = function (_mx, _my, _mw, _mh) {
+    this.x = _mx;
+    this.y = _my;
+    this.w = _mw;
+    this.h = _mh;
+    
+    this.isIntersecting = function (a) {
+        return false;
+    };
+};
+
+
+
+
